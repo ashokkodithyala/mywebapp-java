@@ -1,0 +1,53 @@
+# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
+
+name: Maven Package
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest    
+    steps:
+    - name: checkout Git repository
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 21 for Build
+      uses: actions/setup-java@v4
+      with:        
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '21'        
+        cache: 'maven'
+        
+    - name: Build with Maven
+      run: mvn clean install -DskipTests
+      #run: mvn -B package --file pom.xml
+
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v4      
+      with:
+        name: MyWebApp-0.0.1-SNAPSHOT
+        path: |                           
+         ${{ github.workspace }}/target
+         ${{ github.workspace }}/reports
+          retention-days: 10          
+          
+  sonar:
+    name: Code-Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21 for Sonar
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '21'        
+      - name: SonarCloud Scan
+        run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   
+
