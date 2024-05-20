@@ -10,8 +10,7 @@
 	</parent>
 	<groupId>com.webapp</groupId>
 	<artifactId>MyWebApp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<version>0.0.1-SNAPSHOT</version>	
 	<name>MyWebApp</name>
 	<description>Wep App project for Spring Boot</description>
 	<properties>
@@ -43,13 +42,8 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version><!--$NO-MVN-MAN-VER$-->
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
