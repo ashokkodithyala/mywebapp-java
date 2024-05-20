@@ -83,5 +83,5 @@ jobs:
         #context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${GITHUB_RUN_ID}
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.sha }}
         
