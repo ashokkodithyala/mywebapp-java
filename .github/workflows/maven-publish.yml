@@ -32,7 +32,7 @@ jobs:
         name: java-webapp
         path: |                  
          '/home/runner/work/mywebapp-java/mywebapp-java/target/*.jar'
-         '${{ github.workspace }}/target/*.jar'
+         ${{ github.workspace }}/target
           retention-days: 10
           echo 'workspace path: ${{ github.workspace }}'    
 
