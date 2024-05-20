@@ -26,3 +26,11 @@ jobs:
       run: mvn clean install -DskipTests
       #run: mvn -B package --file pom.xml
 
+    - name: Upload target folder
+      uses: actions/upload-artifact@v4      
+      with:
+        name: target
+        path: |
+          ${{ github.workspace }}/target
+          ${{ github.workspace }}/reports
+          retention-days: 10
