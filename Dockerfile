@@ -2,8 +2,9 @@ FROM openjdk:21
 WORKDIR /app
 
 # Copy the JAR file (/app)
-#COPY target/jar/*.jar  ./MyWebApp.jar
-COPY .  ./MyWebApp.jar
+COPY *.jar  ./MyWebApp.jar
+
+CMD echo .
 
 # Expose the port the app runs on
 EXPOSE 8080
