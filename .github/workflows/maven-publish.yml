@@ -100,6 +100,8 @@ jobs:
         docker run --name webappcontainter -d \
               -p 8090:8080 \
               ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
+        docker ps 
 
         echo Testing Image using wget
-        wget -q -o - 127.0.0.1:8090/greeting | grep Hello 
+        echo wget -q -o - 127.0.0.1:8090/greeting | grep Hello
+        wget -o - 127.0.0.1:8090 | grep connected
