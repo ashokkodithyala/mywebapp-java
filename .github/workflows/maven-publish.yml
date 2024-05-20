@@ -33,7 +33,8 @@ jobs:
         path: |                           
          ${{ github.workspace }}/target         
           retention-days: 10          
-          
+        
+
   sonar:
     name: Code-Quality Check
     runs-on: ubuntu-latest    
@@ -57,18 +58,26 @@ jobs:
              ${{ github.workspace }}/reports
              retention-days: 10          
    
+
+
   docker:
-    name: Publish Docker Image
+    name: Containerization
     runs-on: ubuntu-latest
     needs: [build,sonar]
     steps:
+    - name: checkout Git repository
+      uses: actions/checkout@v4
+    
     - name: Download artifact for docker build
       uses: actions/download-artifact@v4      
       with:
-        name: MyWebApp-0.0.1-SNAPSHOT        
-    
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3  
+        name: MyWebApp-0.0.1-SNAPSHOT
+        path: target/jar
+    - name: Display structure of downloaded files
+      run: ls -ls target/jar/target
+
+    #- name: Set up Docker Buildx
+     # uses: docker/setup-buildx-action@v3  
     
     - name: Log in to DockerHub
       uses: docker/login-action@v3
@@ -80,8 +89,17 @@ jobs:
       id: docker_build      
       uses: docker/build-push-action@v5
       with:
-        #context: .
-        file: ./Dockerfile
+        #context: .        
+        #file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${GITHUB_RUN_ID}
-        
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
+    
+    - name: Docker Image Testing
+      run: |
+        docker images
+        docker run --name webappcontainter -d \
+              -p 8090:8080 \
+              ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
+
+        echo Testing Image using wget
+        wget -q -o - 127.0.0.1:8090/greeting | grep Hello 
