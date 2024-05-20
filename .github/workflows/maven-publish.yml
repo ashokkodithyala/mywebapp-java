@@ -98,7 +98,7 @@ jobs:
       run: |
         docker images
         docker run --name webappcontainter -d \
-        -p 8090:8080
+        -p 8090:8080 \
         ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
 
         echo Testing Image using wget
