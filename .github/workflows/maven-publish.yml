@@ -45,9 +45,18 @@ jobs:
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '21'        
-      - name: SonarCloud Scan
+      - name: Sonar Code Analysis
         run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Sonar Report artifcat upload
+        uses: actions/upload-artifact@v4      
+        with:
+          name: Sonary Report
+          path: |                                       
+             ${{ github.workspace }}/reports
+             retention-days: 10          
    
 
+      
