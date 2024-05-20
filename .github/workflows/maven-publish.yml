@@ -30,8 +30,9 @@ jobs:
       uses: actions/upload-artifact@v4      
       with:
         name: java-webapp
-        path: |
-         '${{ github.workspace }}/target/*.jar'         
+        path: |         
+         '/home/runner/.m2/repository/com/webapp/MyWebApp/0.0.1-SNAPSHOT/*.jar'     
           retention-days: 10
+          echo '${{ github.workspace }}'    
 
 
