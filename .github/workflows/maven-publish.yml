@@ -15,7 +15,7 @@ jobs:
     - name: checkout Git repository
       uses: actions/checkout@v4
       
-    - name: Set up JDK 21
+    - name: Set up JDK 21 for Build
       uses: actions/setup-java@v4
       with:        
         distribution: 'zulu' # See 'Supported distributions' for available options
@@ -29,17 +29,25 @@ jobs:
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4      
       with:
-        name: java-webapp
+        name: MyWebApp-0.0.1-SNAPSHOT
         path: |                           
          ${{ github.workspace }}/target
          ${{ github.workspace }}/reports
           retention-days: 10          
-
-    - name: Test Report
-      uses: dorny/test-reporter@v1
-      if: success() || failure()
-      with:
-          name: Test Results
-          path: ${{ github.workspace }}/target/surefire-reports/TEST-TestSuite.xml
-          reporter: java-junit      
+          
+  sonar:
+    name: Code-Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21 for Sonar
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '21'        
+      - name: SonarCloud Scan
+        run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   
 
