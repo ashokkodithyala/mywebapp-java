@@ -4,8 +4,6 @@ WORKDIR /app
 # Copy the JAR file (/app)
 COPY *.jar  ./MyWebApp.jar
 
-CMD echo .
-
 # Expose the port the app runs on
 EXPOSE 8080
 
