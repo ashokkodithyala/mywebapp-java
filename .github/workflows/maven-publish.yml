@@ -26,11 +26,12 @@ jobs:
       run: mvn clean install -DskipTests
       #run: mvn -B package --file pom.xml
 
-    - name: Upload target folder
+    - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4      
       with:
-        name: target
+        name: java-webapp
         path: |
-          ${{ github.workspace }}/target
-          ${{ github.workspace }}/reports
+         '${{ github.workspace }}/target/*.jar'         
           retention-days: 10
+
+
