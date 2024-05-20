@@ -136,3 +136,13 @@ jobs:
         #file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
+
+  Deploy-To-Dev-Env:
+    name: Build
+    needs: [build,sonar,security,docker]
+    runs-on: ubuntu-latest    
+    steps:
+    - name: checkout Git repository
+      uses: actions/checkout@v4 
+
+    
