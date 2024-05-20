@@ -86,5 +86,5 @@ jobs:
         #context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:v1
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
         
