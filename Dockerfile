@@ -1,9 +1,11 @@
-FROM maven:3.8.1-openjdk-11-slim AS MAVEN_ENV
-WORKDIR /build/
-COPY pom.xml /build
-COPY src /build/src
-RUN mvn clean package -DskipTests=true
+FROM openjdk:21
+WORKDIR /app
 
-FROM openjdk:11-jre-slim-buster
-COPY  --from=MAVEN_ENV /build/target/MyWebApp-*.jar mywebapp.jar
-ENTRYPOINT ["java", "-jar", "mywebapp.jar"]
+# Copy the JAR file (/app)
+COPY *.jar ./MyWebApp.jar
+
+# Expose the port the app runs on
+EXPOSE 8080
+
+# Run the jar file
+CMD ["java", "-jar", "MyWebApp.jar"]
