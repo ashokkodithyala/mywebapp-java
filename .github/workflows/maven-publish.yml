@@ -33,7 +33,16 @@ jobs:
         path: |                           
          ${{ github.workspace }}/target         
           retention-days: 10          
-          
+    
+    - name: Upload Docker file to ${{ github.workspace }} 
+      uses: actions/upload-artifact@v4      
+      with:
+        name: Dockerfile
+        path: |                           
+          ${{ github.workspace }}
+           retention-days: 10               
+
+
   sonar:
     name: Code-Quality Check
     runs-on: ubuntu-latest    
@@ -57,6 +66,8 @@ jobs:
              ${{ github.workspace }}/reports
              retention-days: 10          
    
+
+
   docker:
     name: Publish Docker Image
     runs-on: ubuntu-latest
@@ -67,6 +78,11 @@ jobs:
       with:
         name: MyWebApp-0.0.1-SNAPSHOT        
     
+    - name: Download docker file to ${{ github.workspace }}
+      uses: actions/download-artifact@v4        
+      with:
+       name: Dockerfile       
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3  
     
@@ -83,5 +99,5 @@ jobs:
         #context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:v1
         
