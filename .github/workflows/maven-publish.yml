@@ -96,8 +96,8 @@ jobs:
       id: docker_build      
       uses: docker/build-push-action@v5
       with:
-        #context: .
-        file: ./Dockerfile
+        context: .
+        file: Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:v1
         
