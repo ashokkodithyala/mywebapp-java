@@ -1,12 +1,10 @@
-FROM openjdk:21
+FROM openjdk:17-jdk-slim
+
 WORKDIR /app
 
-# Copy the JAR file (/app)
-COPY *.jar  ./MyWebApp.jar
-
+ADD target/MyWebApp-0.0.1-SNAPSHOT.jar /app/MyWebApp.jar
 RUN chmod +x MyWebApp.jar
 
-# Expose the port the app runs on
 EXPOSE 8080
 
 # Run the jar file
