@@ -56,10 +56,12 @@ jobs:
       #    mkdir sarif_files &&
       #    mv snyk_test.sarif snyk_code_test.sarif sarif_files/
       - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: snyk.sarif
           wait-for-processing: true
+          # Used to differentiate multiple results for one commit
+          category: javaapp-analysis-tool
           
 
   sonar:
@@ -92,8 +94,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build,sonar]
     steps:
-    #- name: checkout Git repository
-    #  uses: actions/checkout@v4
+    - name: checkout Git repository
+      uses: actions/checkout@v4
+    
+    - name: Build the app
+      run: |
+        mvn clean
+        mvn -B package --file pom.xml
     
     - name: Download artifact for docker build
       uses: actions/download-artifact@v4      
