@@ -2,7 +2,7 @@ FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
-ARG JAR_FILE=/target/*.jar
+ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} MyWebApp.jar
 
 #ADD target/MyWebApp-0.0.1-SNAPSHOT.jar /app/MyWebApp.jar
