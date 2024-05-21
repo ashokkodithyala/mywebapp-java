@@ -60,13 +60,13 @@ jobs:
         with:
           args: --sarif-file-output=results.sarif
 
-      #- name: Upload result to GitHub Code Scanning
-      #  uses: github/codeql-action/upload-sarif@v3
-      #  with:
-      #    sarif_file: target/surefire-reports/results.sarif
-      #    wait-for-processing: true
-      #    # Used to differentiate multiple results for one commit
-      #    category: javaapp-analysis-tool
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif
+          wait-for-processing: true
+          # Used to differentiate multiple results for one commit
+          category: javaapp-analysis-tool
       
       - name: Display files after scanning
         run: ls -ls 
@@ -140,7 +140,7 @@ jobs:
       id: docker_build      
       uses: docker/build-push-action@v5
       with:
-        context: .    
+        #context: .    
         #file: ./Dockerfile
         push: false
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
