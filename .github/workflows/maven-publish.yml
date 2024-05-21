@@ -71,7 +71,7 @@ jobs:
       - name: Upload scanning report artifact 
         uses: actions/upload-artifact@v4      
         with:
-          name: results.sarif
+          name: Security Scanning report artifact
           path: |                           
             ./results.sarif
             retention-days: 10 
@@ -148,7 +148,7 @@ jobs:
       id: docker_build      
       uses: docker/build-push-action@v5
       with:
-        #context: .    
+        context: target/
         #file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
