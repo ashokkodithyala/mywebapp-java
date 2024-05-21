@@ -61,10 +61,12 @@ jobs:
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: results.sarif
+          sarif_file: surefire-reports/results.sarif
           wait-for-processing: true
           # Used to differentiate multiple results for one commit
           category: javaapp-analysis-tool
+      - name: Display files after scanning
+        run: ls -ls 
           
 
   sonar:
@@ -89,7 +91,7 @@ jobs:
           path: |                                       
              ${{ github.workspace }}/reports
              retention-days: 10          
-   
+
 
 
   docker:
