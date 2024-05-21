@@ -27,7 +27,8 @@ jobs:
             aws-region: ${{ secrets.aws_region }}
         - name: Update kubeconfig
           run: |
-            aws eks update-kubeconfig --name ${{ secrets.eks_cluster_name }} --role-arn ${{ secrets.eks_role_arn }}      
+            aws eks update-kubeconfig --name ${{ secrets.eks_cluster_name }} --region ${{ secrets.aws_region }}    
+            
         - name: Deploy to EKS
           run: |
             kubectl apply -f manifestfiles
