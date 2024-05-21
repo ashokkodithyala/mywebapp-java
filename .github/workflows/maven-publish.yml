@@ -9,11 +9,100 @@ on:
       - 'main'
 
 jobs:
-  build:
-    name: Build & Unit Test
+  unittest:
+    name: Unit Testing
+    strategy:
+      matrix:
+        java_version: [17,21]
+        operating_system: [ubuntu-latest,macos-latest]        
+    runs-on: ${{ matrix.operating_system}}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Unit Testing
+        run: mvn -B test --file pom.xml    
+      
+      - name: Publish Test Report
+        if: success() || failure()
+        uses: scacap/action-surefire-report@v1
+
+  sonar:
+    name: Code Coverage
     runs-on: ubuntu-latest    
     steps:
-    - name: checkout Git repository
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21 for Sonar
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '21'        
+      - name: Sonar Code Analysis
+        run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      #- name: SonarQube Scan
+      #  uses: sonarsource/sonarqube-scan-action@master
+      #  env:
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}    
+
+      - name: Sonar Report artifcat upload
+        uses: actions/upload-artifact@v4      
+        with:
+          name: Sonar Report
+          path: |                                       
+              ./reports
+              retention-days: 10          
+      
+      - name: Wait for the quality gate result
+        run: sleep 5
+
+      - uses: phwt/sonarqube-quality-gate-action@v1
+        id: quality-gate-check
+        with:
+          sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
+          sonar-host-url: ${{ secrets.SONAR_HOST_URL }}
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}          
+
+      - name: Sonar Report result
+        run: |
+          echo "${{ steps.quality-gate-check.outputs.project-status }}"
+          echo "${{ steps.quality-gate-check.outputs.quality-gate-result }}"    
+          
+  depchecktest:
+      runs-on: ubuntu-latest
+      name: depecheck_test
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Build project with Maven
+          run: mvn clean install
+        - name: Depcheck
+          uses: dependency-check/Dependency-Check_Action@main
+          id: Depcheck
+          with:
+            project: 'webapp'
+            path: '.'
+            format: 'HTML'
+            out: 'reports' # this is the default, no need to specify unless you wish to override it
+            args: >
+              --failOnCVSS 7
+              --enableRetired
+        - name: Upload Test results
+          uses: actions/upload-artifact@master
+          with:
+              name: Depcheck report
+              path: ${{github.workspace}}/reports
+  
+  build:
+    name: Build
+    runs-on: ubuntu-latest    
+    needs: [unittest,depchecktest]
+    steps:
+    - name: Checkout Repository
       uses: actions/checkout@v4
       
     - name: Set up JDK 21 for Build
@@ -21,14 +110,7 @@ jobs:
       with:        
         distribution: 'zulu' # See 'Supported distributions' for available options
         java-version: '21'        
-        cache: 'maven'
-    
-    - name: Unit Tests
-      run: mvn -B test --file pom.xml    
-    - name: Publish Test Report
-      if: success() || failure()
-      uses: scacap/action-surefire-report@v1
-    
+        cache: 'maven'            
     
     #- name: Build with Maven
     #  run: mvn clean install -DskipTests    
@@ -85,53 +167,6 @@ jobs:
       - name: Display files after scanning
         run: ls -ls 
           
-
-  sonar:
-    name: Code-Quality Check
-    runs-on: ubuntu-latest    
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 21 for Sonar
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
-          java-version: '21'        
-      - name: Sonar Code Analysis
-        run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      #- name: SonarQube Scan
-      #  uses: sonarsource/sonarqube-scan-action@master
-      #  env:
-      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}    
-
-      - name: Sonar Report artifcat upload
-        uses: actions/upload-artifact@v4      
-        with:
-          name: Sonar Report
-          path: |                                       
-             ./reports
-             retention-days: 10          
-      
-      - name: Wait for the quality gate result
-        run: sleep 5
-
-      - uses: phwt/sonarqube-quality-gate-action@v1
-        id: quality-gate-check
-        with:
-          sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
-          sonar-host-url: ${{ secrets.SONAR_HOST_URL }}
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}          
-
-      - name: Sonar Report result
-        run: |
-          echo "${{ steps.quality-gate-check.outputs.project-status }}"
-          echo "${{ steps.quality-gate-check.outputs.quality-gate-result }}"
-
-
 
   docker:
     name: Containerization
