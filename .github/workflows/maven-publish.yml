@@ -14,12 +14,19 @@ jobs:
     strategy:
       matrix:
         java_version: [17,21]
-        operating_system: [ubuntu-latest,macos-latest]        
+        operating_system: [ubuntu-latest]        
     runs-on: ${{ matrix.operating_system}}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
       
+      - name: Set up JDK 21 for Build
+        uses: actions/setup-java@v4
+        with:        
+          distribution: 'zulu'
+          java-version: ${{ matrix.java_version }}        
+          cache: 'maven'   
+
       - name: Unit Testing
         run: mvn -B test --file pom.xml    
       
@@ -35,7 +42,7 @@ jobs:
       - name: Set up JDK 21 for Sonar
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
+          distribution: 'zulu' 
           java-version: '21'        
       - name: Sonar Code Analysis
         run: mvn -B clean verify -Psonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
@@ -78,8 +85,17 @@ jobs:
       steps:
         - name: Checkout
           uses: actions/checkout@v2
+        
+        - name: Set up JDK 21 for Build
+          uses: actions/setup-java@v4
+          with:        
+            distribution: 'zulu' 
+            java-version: '21'        
+            cache: 'maven' 
+        
         - name: Build project with Maven
           run: mvn clean install
+        
         - name: Depcheck
           uses: dependency-check/Dependency-Check_Action@main
           id: Depcheck
@@ -108,7 +124,7 @@ jobs:
     - name: Set up JDK 21 for Build
       uses: actions/setup-java@v4
       with:        
-        distribution: 'zulu' # See 'Supported distributions' for available options
+        distribution: 'zulu' 
         java-version: '21'        
         cache: 'maven'            
     
@@ -184,7 +200,7 @@ jobs:
     - name: Set up JDK 21 for Build
       uses: actions/setup-java@v4
       with:        
-        distribution: 'zulu' # See 'Supported distributions' for available options
+        distribution: 'zulu' 
         java-version: '21'        
         cache: 'maven'
 
