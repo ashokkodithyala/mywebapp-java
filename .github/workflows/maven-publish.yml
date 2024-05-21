@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build & Unit Test
     runs-on: ubuntu-latest    
     steps:
     - name: checkout Git repository
@@ -23,7 +23,7 @@ jobs:
         java-version: '21'        
         cache: 'maven'
     
-    - name: unit tests
+    - name: Unit tests
       run: mvn -B test --file pom.xml    
     
     #- name: Build with Maven
@@ -183,11 +183,25 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
 
   Deploy-To-Dev-Env:
-    name: Deploy to Dev
+    name: Deploy to Development (EKS)
     needs: [build,sonar,security,docker]
     runs-on: ubuntu-latest    
     steps:
-    - name: checkout Git repository
-      uses: actions/checkout@v4 
-
-    
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --role-arn ${{ secrets.EKS_ROLE_ARN }}      
+      - name: Deploy to EKS
+        run: |
+          kubectl apply -f manifestfiles/mywebapp-deploy.yaml
+          kubectl apply -f manifestfiles/service-nodeport.yaml
+          kubectl apply -f manifestfiles/service-loadbalancer.yaml
+          kubectl apply -f manifestfiles/mywebapp-ingress.yaml
+          
+          
+          
