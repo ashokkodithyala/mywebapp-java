@@ -112,7 +112,7 @@ jobs:
         mvn clean
         mvn -B package --file pom.xml
     - name: Display files after build
-      run: ls -lrta target/
+      run: ls -ls target/
     
     #- name: Download artifact for docker build
      # uses: actions/download-artifact@v4      
@@ -135,9 +135,9 @@ jobs:
       id: docker_build      
       uses: docker/build-push-action@v5
       with:
-        context: .        
+        context: .    
         #file: ./Dockerfile
-        push: false
+        push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
     
     - name: Docker Image Testing
