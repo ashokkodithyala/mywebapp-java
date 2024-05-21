@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mywebapp-deployment
+spec:
+  selector:
+    matchLabels:
+      name: mywebapp
+  template:
+    metadata:
+      labels:
+        name: mywebapp
+    spec:
+      containers:
+        - name: webapp-cont
+          image: dockers766/mywebapp:latest
+          ports:
+            - containerPort: 8080
