@@ -2,11 +2,12 @@ provider "aws" {
   region = var.region
 }
 
-
+#This is for remote backend state file to store
 resource "aws_s3_bucket" "s3_bucket" {
   bucket =var.bucket_name
 }
 
+#This is for remote backend lock info to store
 resource "aws_dynamodb_table" "terraform_lock" {
   name           = var.dynamo_table_name
   billing_mode   = "PAY_PER_REQUEST"
@@ -16,12 +17,5 @@ resource "aws_dynamodb_table" "terraform_lock" {
     name = "LockID"
     type = "S"
   }
-}
-
-# for testing only
-resource "aws_instance" "webserver_dev" {
-  instance_type = var.instance_type
-  ami = var.ami
-  subnet_id = "subnet-0458702752bd2939f"  
 }
 
