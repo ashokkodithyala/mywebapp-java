@@ -52,8 +52,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Change permissions
         run: chmod +x mvnw
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/maven-3-jdk-11@master
+      - name: Run Snyk to check for vulnerabilities        
+        uses: snyk/actions/maven-3-jdk-20@master
         continue-on-error: true           # To make sure that SARIF upload gets called
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -148,8 +148,8 @@ jobs:
       id: docker_build      
       uses: docker/build-push-action@v5
       with:
-        context: target/
-        file: ./Dockerfile
+        #context: target/
+        #file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
     
