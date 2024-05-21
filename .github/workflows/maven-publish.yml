@@ -86,7 +86,7 @@ jobs:
           
   depchecktest:
       runs-on: ubuntu-latest
-      name: depecheck_test
+      name: Dependency Scanning
       steps:
         - name: Checkout
           uses: actions/checkout@v2
@@ -283,10 +283,10 @@ jobs:
           aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --role-arn ${{ secrets.EKS_ROLE_ARN }}      
       - name: Deploy to EKS
         run: |
-          kubectl apply -f manifestfiles/mywebapp-deploy.yaml
-          kubectl apply -f manifestfiles/service-nodeport.yaml
-          kubectl apply -f manifestfiles/service-loadbalancer.yaml
-          kubectl apply -f manifestfiles/mywebapp-ingress.yaml
+          kubectl apply -f manifestfiles
+          kubectl apply -f manifestfiles
+          kubectl apply -f manifestfiles
+          kubectl apply -f manifestfiles
           
           
           
