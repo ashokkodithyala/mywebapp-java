@@ -50,6 +50,8 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+      - name: Change permissions
+        run: chmod +x mvnw
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven-3-jdk-11@master
         continue-on-error: true           # To make sure that SARIF upload gets called
@@ -67,7 +69,7 @@ jobs:
       #    category: javaapp-analysis-tool
       
       - name: Display files after scanning
-        run: ls -ls  && chmod +x mvnw
+        run: ls -ls 
           
 
   sonar:
