@@ -28,9 +28,7 @@ jobs:
     - name: Publish Test Report
       if: success() || failure()
       uses: scacap/action-surefire-report@v1
-    - name: Unit Test Report 
-      run: mvn surefire-report:report   
-      # A HTML report should be generated in ${basedir}/target/site/surefire-report.html.
+    
     
     #- name: Build with Maven
     #  run: mvn clean install -DskipTests    
