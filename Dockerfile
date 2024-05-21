@@ -4,7 +4,7 @@ FROM openjdk:21-jdk-slim
 WORKDIR /app
 
 ARG JAR_FILE=target/
-COPY . .
+ADD . .
 
 RUN pwd && ls -ls
 
