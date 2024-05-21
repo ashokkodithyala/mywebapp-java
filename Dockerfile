@@ -4,7 +4,7 @@ WORKDIR /app
 
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} MyWebApp.jar
-RUN ls -ls
+RUN pwd && ls -ls
 
 #ADD target/MyWebApp-0.0.1-SNAPSHOT.jar /app/MyWebApp.jar
 RUN chmod +x MyWebApp.jar

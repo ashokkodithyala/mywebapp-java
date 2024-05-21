@@ -73,7 +73,7 @@ jobs:
         with:
           name: results.sarif
           path: |                           
-            .
+            ./results.sarif
             retention-days: 10 
       
       - name: Display files after scanning
@@ -98,9 +98,9 @@ jobs:
       - name: Sonar Report artifcat upload
         uses: actions/upload-artifact@v4      
         with:
-          name: Sonary Report
+          name: Sonar Report
           path: |                                       
-             ${{ github.workspace }}/reports
+             ./reports
              retention-days: 10          
 
 
