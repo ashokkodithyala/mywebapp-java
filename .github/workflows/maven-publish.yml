@@ -128,7 +128,8 @@ jobs:
         mvn clean
         mvn -B package --file pom.xml
     - name: Display files after build
-      run: ls -ls target/
+      run: ls -ls 
+      #target/
     
     #- name: Download artifact for docker build
      # uses: actions/download-artifact@v4      
