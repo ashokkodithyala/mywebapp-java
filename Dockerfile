@@ -2,7 +2,7 @@ FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
-ARG JAR_FILE=target
+ARG JAR_FILE=target/
 COPY ${JAR_FILE} MyWebApp.jar
 
 RUN pwd && ls -ls
