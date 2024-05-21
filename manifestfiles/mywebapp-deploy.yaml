@@ -12,7 +12,7 @@ spec:
         name: mywebapp
     spec:
       containers:
-        - name: webapp-cont
-          image: dockers766/mywebapp:latest
+        - name: webapp-container
+          image: dockers766/myweb-app-java
           ports:
             - containerPort: 8080
