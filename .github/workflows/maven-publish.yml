@@ -160,7 +160,7 @@ jobs:
       with:
         #context: target/
         #file: ./Dockerfile
-        push: true
+        push: false
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
     
     - name: Docker Image Testing
