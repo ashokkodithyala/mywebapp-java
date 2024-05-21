@@ -42,6 +42,12 @@ jobs:
   security:
     name: Security Scanning
     runs-on: ubuntu-latest
+    permissions:
+      # required for all workflows
+      security-events: write
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Run Snyk to check for vulnerabilities
@@ -97,6 +103,13 @@ jobs:
     - name: checkout Git repository
       uses: actions/checkout@v4
     
+    - name: Set up JDK 21 for Build
+      uses: actions/setup-java@v4
+      with:        
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '21'        
+        cache: 'maven'
+
     - name: Build the app
       run: |
         mvn clean
@@ -148,7 +161,7 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/myweb-app-java:${{ github.run_id }}
 
   Deploy-To-Dev-Env:
-    name: Build
+    name: Deploy to Dev
     needs: [build,sonar,security,docker]
     runs-on: ubuntu-latest    
     steps:
