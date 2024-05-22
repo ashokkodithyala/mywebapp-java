@@ -1,6 +1,6 @@
 ## Follow the instructions below to provision the AWS EKS infrastructure.
 
-#### Step 1: [Install AWS CLI and Terraform](infra_as_code/README.md)  ***(assuming it hasn't been completed yet)***
+#### Step 1: [Install AWS CLI and Terraform](infra_as_code/2.aws_eks_ias/infra_as_code/README.md)  ***(assuming it hasn't been completed yet)***
 
 #### Step 2: Make sure to set up a [REMOTE BACKEND](/infra_as_code/1.aws_ias_rb-s3-db/README.md) before you proceed.
 
