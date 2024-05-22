@@ -79,3 +79,4 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
 - Terraform
 - Snyk - Scan the security vulnerabilities
 - SonarCloud - SonarQube is used for continuous inspection of code quality
+- OWASP Dependency-Check tool - a Software Composition Analysis (SCA) tool that attempts to detect publicly disclosed vulnerabilities contained within a project’s dependencies. 
