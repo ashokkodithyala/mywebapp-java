@@ -13,6 +13,8 @@ on:
           required: true
         eks_role_arn:
           required: true 
+        dockerhub_username:
+          required: true   
 
 jobs:
     reuse-deploy:
@@ -38,3 +40,6 @@ jobs:
         - name: Deploy to EKS
           run: |
             kubectl apply -f manifestfiles
+            kubectl set image deployment/mywebapp-deployment webapp-container=${{ secrets.dockerhub_username }}/myweb-app-java:${{ github.run_id }}
+
+            

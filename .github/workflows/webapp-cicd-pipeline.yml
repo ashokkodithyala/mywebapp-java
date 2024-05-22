@@ -223,6 +223,10 @@ jobs:
     - name: Display files after build
       run: ls -ls 
       #target/
+
+      #can be deleted below action after testing
+    - name: checkout Git repository
+      uses: actions/checkout@v4  
     
     #- name: Download artifact for docker build
      # uses: actions/download-artifact@v4      
@@ -281,11 +285,12 @@ jobs:
       aws_region: ${{ secrets.AWS_REGION }}
       eks_cluster_name: ${{ secrets.EKS_CLUSTER_NAME }}
       eks_role_arn: ${{ secrets.EKS_ROLE_ARN }}  
+      dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
   
   Deploy-To-ProdEnv:    
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main-DONOT'
     name: Deploy to Production (EKS)
-    needs: [docker]
+    needs: [Deploy-To-DevEnv]
     uses: ./.github/workflows/reuse-deployment.yml
     secrets:
       aws_access_keyid: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -293,5 +298,5 @@ jobs:
       aws_region: ${{ secrets.AWS_REGION }}
       eks_cluster_name: ${{ secrets.EKS_CLUSTER_NAME }}
       eks_role_arn: ${{ secrets.EKS_ROLE_ARN }}  
-          
+      dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}    
           
