@@ -3,7 +3,7 @@
 aws_region = "us-west-1"
 
 # kubernetes version
-kubernetes_version = 1.27
+kubernetes_version = 1.29
 
 # default CIDR range of the VPC
 vpc_cidr = "10.0.0.0/16"
