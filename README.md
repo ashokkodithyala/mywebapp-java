@@ -64,7 +64,7 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
         * Deploy the manifest files to the production environment (assuming `main/master` is production).
 
 ***Execution:***
-***The pipeline automatically triggers on code changes to the main/master or development/feature branches, ensuring continuous integration and deployment.***
+***After the pipeline completes, the generated reports (Unit Testing, Sonarqube, Dependency Check, and Security Scanning ) are accessible from their respective sites or the GitHub Actions artifacts section.***
 
 > **Note:**
 > Currently generated reports can be viewed from their respective sites or the GitHub Actions artifacts section after the pipeline completes. 
