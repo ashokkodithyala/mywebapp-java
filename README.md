@@ -1,5 +1,28 @@
 ### Deploying a Java Application to AWS EKS using GitHub Actions and IAC with Terraform
 
+## Follow the instructions below to setup AWS CLI and Terraform.
+
+### Install AWS CLI
+- The first step is to install the AWS Command Line Interface (AWS CLI). This tool allows us to configure Terraform to interact with AWS services. We'll use the `#aws configure` command in the next steps to establish this connection.
+
+Follow the below link to Install AWS CLI:
+````
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+```` 
+
+### Install Terraform:
+
+Install Terraform using the below link.
+
+````
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli 
+````
+
+### Configure the AWS Security credentials
+
+In your terminal, run the **aws configure** command to provide your AWS security credentials. These credentials will allow Terraform to interact with AWS resources. ***Remember to keep these credentials secure.***
+
+
 ### Application Used:
 - Basic java web application created.
 
@@ -9,7 +32,9 @@
 
  - Automate building and deploying your Docker image to an EKS cluster using a GitHub Actions CI/CD pipeline. This guide walks you through creating workflows that handle building, testing, and deploying the image automatically.
 
-### Step 1: Configure GitHub Secrets
+### GitHub Actions for Continuous Integration and Delivery
+
+#### Step 1: Configure GitHub Secrets
 To ensure secure deployment, we'll need some secrets stored in your GitHub repository. Navigate to your repository settings and add the following secrets:
   
       - Settings 
@@ -31,9 +56,7 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
             - SONAR_TOKEN           - Obtain from sonar account 
 
 
-### Step 2 - GitHub Actions for Continuous Integration and Delivery
-
-#### Automated Pipeline Stages:
+#### Step 2 - Automated Pipeline Stages:
 
 1. **Quality & Security Checks**
     * **Unit Testing:** Verify individual code units function correctly. *Note: Covered only very basic test for POC*
@@ -77,7 +100,7 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
 > After the pipeline completes, the generated reports (Unit Testing, Sonarqube, Dependency Check, and Security Scanning ) are accessible from their respective sites or the GitHub Actions artifacts section. 
 
 
-### Technology Stack
+#### Technology Stack
 - AWS
 - Amazon Elastic Kubernetes Service
 - GitHub Actions
