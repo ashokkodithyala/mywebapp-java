@@ -35,8 +35,6 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
 
 #### Automated Pipeline Stages:
 
-**Pipeline Stages:**
-
 1. **Quality & Security Checks**
     * **Unit Testing:** Verify individual code units function correctly. *Note: Covered only very basic test for POC*
     * **Code Coverage:** Measure how much code is tested by unit tests. 
