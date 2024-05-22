@@ -5,16 +5,16 @@ In Terraform, a backend defines where it stores its state data. By default, Terr
 
 Remote backends offer a solution: they store the state data in a remote storage service like Amazon S3, Azure Blob Storage, Google Cloud Storage, or even Terraform Cloud itself. This allows multiple users to access and modify the infrastructure state in a centralized location
 
-## Follow below the instructions to setup Remote backend 
+## Follow the instructions below to set up a remote backend
 
-### Step 1: Updated below variables in dev.tfvars file
+### Step 1: Update below variables in dev.tfvars file
   ```
   1. region = "us-east-1"
   2. bucket_name = "ashok-s3-poc-remotebackendstore" 
   3. dynamo_table_name = "ashok-terraform-lock"
   4. bucket_key = "ashokpoc/terraform.tfstate"
   ```
-### Step 2: Run following command to create a AWS S3 Bucket and Dynamo DB table
+### Step 2: Run following command to create a AWS S3 Bucket and Dynamo DB table in AWS
   ````
   1. terraform init 
   2. terraform plan -var-file dev.tfvars
@@ -26,12 +26,11 @@ Remote backends offer a solution: they store the state data in a remote storage 
   ````
 
 ### Step 4:
-- Copy following code in remotebackend_setup.tf and save in terraform project folder 
-- Update below info
+- Create a file `remotebackend_setup.tf` in terraform project folder and update variables from Step 1
 ````
 terraform {
   backend "s3" {
-    bucket         = <Bucket name from step 3>
+    bucket         = <Bucket name>
     key            = <Key>
     region         = <Region>
     encrypt        = true
