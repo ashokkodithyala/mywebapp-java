@@ -2,8 +2,8 @@
 
  ### Step 1: Make sure to set up a [REMOTE BACKEND](/infra_as_code/1.aws_ias_rb-s3-db/README.md) before you proceed.
 
- ### Step 2: Update the following variables in the `.tfvars` file based on your environment.
-    ````
+ ### Step 2: Update the following variable values in the `.tfvars` file according to the environment. A sample is provided for the DEVELOPMENT environment 
+    
     # Region
     aws_region = "us-west-1"
 
@@ -30,15 +30,16 @@
 
     # Specify the enviroment ex: dev, staging, prod
     environment = "dev"
-    ````
+    
 
-### Step 2: Run the following commands in your Terraform project folder. Replace the `dev.tfvars` file based on the environment.
+### Step 2: Run the following commands from Terraform project folder. Replace the `dev.tfvars` file based on the environment.
 
   ````
   1. terraform init 
-  2. terraform plan -var-file dev.tfvars
-  3. terraform apply -var-file dev.tfvars
+  2. terraform plan -var-file <<dev.tfvars>>
+  3. terraform apply -var-file <<dev.tfvars>>
   ````
+  
 
 ### Terraform will provision the following infrastructure after the successful completion of Step 2.
 ### Infrastructure Provisioning:
