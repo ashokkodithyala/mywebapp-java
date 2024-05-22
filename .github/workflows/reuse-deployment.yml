@@ -30,7 +30,7 @@ jobs:
         
         - name: Display files before deploying
           run: |
-            cat manifestfiles/*.yaml
+            ls -lrta
 
         - name: Deploy to EKS
           run: |
