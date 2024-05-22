@@ -1,15 +1,18 @@
-## Terraform State file store
+## Terraform State file - Remote Backend Setup
 
-- Remote backend is for store the state files in S3 and lock information in Dynamo db
+### Terraform Remote Backends
+In Terraform, a backend defines where it stores its state data. By default, Terraform uses a local backend, which keeps the state files on your local machine. This can be limiting, especially when collaborating with others.
+
+Remote backends offer a solution: they store the state data in a remote storage service like Amazon S3, Azure Blob Storage, Google Cloud Storage, or even Terraform Cloud itself. This allows multiple users to access and modify the infrastructure state in a centralized location
 
 ## Follow below the instructions to setup Remote backend 
 
 ### Step 1: Updated below variables in dev.tfvars file
   ```
-  region = "us-east-1"
-  bucket_name = "ashok-s3-poc-remotebackendstore" 
-  dynamo_table_name = "ashok-terraform-lock"
-  bucket_key = "ashokpoc/terraform.tfstate"
+  1. region = "us-east-1"
+  2. bucket_name = "ashok-s3-poc-remotebackendstore" 
+  3. dynamo_table_name = "ashok-terraform-lock"
+  4. bucket_key = "ashokpoc/terraform.tfstate"
   ```
 ### Step 2: Run following command to create a AWS S3 Bucket and Dynamo DB table
   ````
