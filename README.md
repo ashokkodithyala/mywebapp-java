@@ -1,6 +1,6 @@
 ### Deploying a Java Application to AWS EKS using GitHub Actions and IAC with Terraform
 
-### Application Setup:
+### Application Used:
 - Basic java web application created.
 
 ### Terraform Infrastructure Setup:
@@ -64,7 +64,14 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
         * Deploy the manifest files to the production environment (assuming `main/master` is production).
 
 ***Execution:***
-***The pipeline automatically triggers on code changes to the main/master or development/feature branches, ensuring continuous integration and deployment.***
+***The pipeline automatically triggers on code changes to the main/master or development/feature branches, ensuring continuous integration and deployment or manually trigger the workflow following below steps.***
+
+        Goto 
+           mywebapp-java repository 
+             Actions tab 
+                Select Java WebApp CI/CD pipeline (left side menu) 
+                click on Runworkflow 
+
 
 > **Note:**
 > After the pipeline completes, the generated reports (Unit Testing, Sonarqube, Dependency Check, and Security Scanning ) are accessible from their respective sites or the GitHub Actions artifacts section. 
