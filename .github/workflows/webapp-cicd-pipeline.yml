@@ -290,7 +290,7 @@ jobs:
   Deploy-To-ProdEnv:    
     if: github.ref == 'refs/heads/main-DONOT'
     name: Deploy to Production (EKS)
-    needs: [Deploy-To-DevEnv]
+    needs: [docker]
     uses: ./.github/workflows/reuse-deployment.yml
     secrets:
       aws_access_keyid: ${{ secrets.AWS_ACCESS_KEY_ID }}
