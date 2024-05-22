@@ -7,7 +7,7 @@ Remote backends offer a solution: they store the state data in a remote storage 
 
 ## Follow the instructions below to set up a remote backend
 
-#### Step 1: [Install AWS CLI and Terraform](infra_as_code/README.md)  ***(assuming it hasn't been completed yet)***
+#### Step 1: [Install AWS CLI and Terraform](README-INSTALL.md)  ***(assuming it hasn't been completed yet)***
 
 #### Step 2: Update below variables in dev.tfvars file
   ```
