@@ -7,25 +7,27 @@ Remote backends offer a solution: they store the state data in a remote storage 
 
 ## Follow the instructions below to set up a remote backend
 
-### Step 1: Update below variables in dev.tfvars file
+### Step 1: [Install AWS CLI and Terraform](infra_as_code/README.md)  ***(assuming it hasn't been completed yet)***
+
+### Step 2: Update below variables in dev.tfvars file
   ```
   1. region = "us-east-1"
   2. bucket_name = "ashok-s3-poc-remotebackendstore" 
   3. dynamo_table_name = "ashok-terraform-lock"
   4. bucket_key = "ashokpoc/terraform.tfstate"
   ```
-### Step 2: Run following command to create a AWS S3 Bucket and Dynamo DB table in AWS
+### Step 3: Run following command to create a AWS S3 Bucket and Dynamo DB table in AWS
   ````
   1. terraform init 
   2. terraform plan -var-file dev.tfvars
   3. terraform apply -var-file dev.tfvars
   ````
-### Step 3:
+### Step 4:
   ````
   Log into AWS Console and verify S3 Bucket and Dynamo db 
   ````
 
-### Step 4:
+### Step 5:
 - Create a file `remotebackend_setup.tf` in terraform project folder and update variables from Step 1
 ````
 terraform {
