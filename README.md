@@ -1,6 +1,6 @@
-### Deploying a Java Application to AWS EKS using GitHub Actions and IAC with Terraform
+## Deploying a Java Application to AWS EKS using GitHub Actions and IAC with Terraform
 
-## Follow the instructions below to setup AWS CLI and Terraform.
+### Follow the instructions below to setup AWS CLI and Terraform.
 
 ### Install AWS CLI
 - The first step is to install the AWS Command Line Interface (AWS CLI). This tool allows us to configure Terraform to interact with AWS services. We'll use the `#aws configure` command in the next steps to establish this connection.
@@ -22,7 +22,9 @@ https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
 In your terminal, run the **aws configure** command to provide your AWS security credentials. These credentials will allow Terraform to interact with AWS resources. ***Remember to keep these credentials secure.***
 
+
 ***********
+
 
 ### Application Used:
 - Basic java web application created.
