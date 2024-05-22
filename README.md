@@ -5,7 +5,7 @@
 
 ### Terraform Infrastructure Setup:
 
-- Follow the instructions  to provision the [AWS EKS infrastructure](infra_as_code/2.aws_eks_ias/README.md) page
+- Follow the instructions  to provision the [AWS EKS infrastructure](infra_as_code/2.aws_eks_ias/infra_as_code/README.md) page
 
  - Automate building and deploying your Docker image to an EKS cluster using a GitHub Actions CI/CD pipeline. This guide walks you through creating workflows that handle building, testing, and deploying the image automatically.
 
