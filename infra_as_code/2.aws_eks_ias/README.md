@@ -1,4 +1,4 @@
-## Follow the instructions below to set up AWS EKS infrastructure.
+## Follow the instructions below to provision the AWS EKS infrastructure.
 
  ### Step 1: Make sure to set up a [REMOTE BACKEND](/infra_as_code/1.aws_ias_rb-s3-db/README.md) before you proceed.
 
@@ -40,3 +40,30 @@
   3. terraform apply -var-file dev.tfvars
   ````
 
+### Terraform will provision the following infrastructure after the successful completion of Step 2.
+````
+- VPC creation:
+    - Creation of public subnets, internet gateway, and route tables for public subnets.
+- Security Groups:
+    -Security groups to control traffic to and from the EKS cluster.
+- IAM Roles:
+    - Creation of IAM roles and attach policies for EKS cluster and worker nodes to manage permissions securely.
+- EKS Cluster:
+    - Use Terraform AWS EKS module to provision the EKS cluster.
+    - Configure subnets, VPC, cluster version, and node groups.
+- Outputs:
+    - It outputs cluster name, endpoint, and security group IDs.
+````
+````
+### Infrastructure Provisioning:
+- VPC Network: Creates a virtual private cloud (VPC) with public subnets, an internet gateway, and route tables for the subnets, enabling communication with the internet.
+- Security Groups: Defines security groups to control incoming and outgoing traffic to and from the EKS cluster, ensuring proper access.
+- IAM Roles and Policies: Creates IAM roles and attaches appropriate policies for the EKS cluster and worker nodes. This ensures secure access and permission management.
+
+### EKS Cluster with Terraform:
+- Provisioning with Terraform: Leverages the Terraform AWS EKS module to automate the provisioning of the EKS cluster.
+- Cluster Configuration: Configures essential parameters like subnets, VPC, desired Kubernetes version, and node groups for the cluster.
+
+Outputs:
+Cluster Details: Provides outputs including the cluster name, endpoint URL, and security group IDs for easy reference.
+````
