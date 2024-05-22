@@ -1,42 +1,30 @@
-## Follow the instructions below to set up AWS EKS infrastructure.
+## Follow the instructions below to deploy the application.
 
- ### Step 1: Make sure to set up a [REMOTE BACKEND](/infra_as_code/1.aws_ias_rb-s3-db/README.md) before you proceed.
+ ### Step 1: Make sure to set up a [Remote Backend](/infra_as_code/1.aws_ias_rb-s3-db/README.md) before you proceed.
 
- ### Step 2: Update the following variables in the `.tfvars` file based on your environment.
-    ````
-    # Region
-    aws_region = "us-west-1"
+ ### Step 2: Make sure [Provision the AWS EKS infrastructure](infra_as_code/2.aws_eks_ias/README.md) before you proceed.   
 
-    # kubernetes version
-    kubernetes_version = 1.29
+ ### Step 3: Update the following secrets in the GitHub repository
+      ````
+      - Settings 
+        - Security 
+          - Secrets and variables -> Actions 
+      ````
 
-    # default CIDR range of the VPC
-    vpc_cidr = "10.0.0.0/16"
+  **Secrets:**
+````
+            - AWS_ACCESS_KEY_ID     - AWS Access key   - can be generated from AWS Accounts page              
+            - AWS_SECRET_ACCESS_KEY - AWS Secret Access key - can be generated from AWS Accounts page              
+            - AWS_REGION            - AWS Region 
+            - DOCKERHUB_TOKEN       - Docker Hub Token - can be generated from Dockerhub account
+            - DOCKERHUB_USERNAME    - Docker Hub User Name            
+            - EKS_CLUSTER_NAME      - EKS Cluster name - can be obtained from step 2 output variables
+            - SNYK_TOKEN            - Snyk is used to scan for security vulnerabilities. Token can be obtained from snyk.io
+            - SONAR_HOST_URL        - Sonar is used for code Analysis 
+             URL: https://sonarcloud.io
+            - SONAR_PROJECT_KEY     - Obtain from sonar account once project setup done
+            - SONAR_TOKEN           - Obtain from sonar account 
+````
 
-    # This private subnets
-    private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
-
-    # This public subnets
-    public_subnets = ["10.0.4.0/24", "10.0.5.0/24"]
-
-    # To set allow inbound traffic from eks
-    sg_cidr_blocks_ingress = ["10.0.0.0/8","172.16.0.0/12"]
-
-    # instance types for eks managed node groups
-    eks_instance_types = ["t3.medium"]
-
-    # ami type for eks managed node groups
-    eks_ami_type = "AL2_x86_64"
-
-    # Specify the enviroment ex: dev, staging, prod
-    environment = "dev"
-    ````
-
-### Step 2: Run the following commands in your Terraform project folder. Replace the `dev.tfvars` file based on the environment.
-
-  ````
-  1. terraform init 
-  2. terraform plan -var-file dev.tfvars
-  3. terraform apply -var-file dev.tfvars
-  ````
+ 
 
