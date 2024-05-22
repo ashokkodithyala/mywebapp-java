@@ -73,3 +73,14 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
 
 > **Note:**
 > Currently generated reports can be viewed from their respective sites or the GitHub Actions artifacts section after the pipeline completes. 
+
+
+## Technology Stack
+- AWS
+- Amazon Elastic Kubernetes Service
+- GitHub Actions
+- Docker
+- Kubernetes
+- Terraform
+- Snyk - Scan the security vulnerabilities
+- SonarCloud - SonarQube is used for continuous inspection of code quality

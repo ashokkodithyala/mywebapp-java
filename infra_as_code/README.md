@@ -1,38 +1,22 @@
-## Follow the instructions below to deploy the application.
+## Follow the instructions below to setup AWS CLI and Terraform.
 
- ### Step 1: Make sure to set up a [Remote Backend](/infra_as_code/1.aws_ias_rb-s3-db/README.md) before you proceed.
+### Install AWS CLI
+- The first step is to install the AWS Command Line Interface (AWS CLI). This tool allows us to configure Terraform to interact with AWS services. We'll use the `#aws configure` command in the next steps to establish this connection.
 
- ### Step 2: Make sure [Provision the AWS EKS infrastructure](infra_as_code/2.aws_eks_ias/README.md) before you proceed.   
+Follow the below link to Install AWS CLI:
+````
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+```` 
 
- ### Step 3: 
- Update the following secrets in the GitHub repository
-  
-      - Settings 
-        - Security 
-          - Secrets and variables -> Actions 
-  
+### Install Terraform:
 
-  **Secrets:**
+Install Terraform using the below link.
 
-            - AWS_ACCESS_KEY_ID     - AWS Access key   - can be generated from AWS Accounts page              
-            - AWS_SECRET_ACCESS_KEY - AWS Secret Access key - can be generated from AWS Accounts page              
-            - AWS_REGION            - AWS Region 
-            - DOCKERHUB_TOKEN       - Docker Hub Token - can be generated from Dockerhub account
-            - DOCKERHUB_USERNAME    - Docker Hub User Name            
-            - EKS_CLUSTER_NAME      - EKS Cluster name - can be obtained from step 2 output variables
-            - SNYK_TOKEN            - Snyk is used to scan the security vulnerabilities. Token can be obtained from snyk.io
-            - SONAR_HOST_URL        - SonarQube is used for continuous inspection of code quality - URL: https://sonarcloud.io
-            - SONAR_PROJECT_KEY     - Obtain from sonar account once project setup done
-            - SONAR_TOKEN           - Obtain from sonar account 
+````
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli 
+````
 
-## Technology Stack
-- AWS
-- Amazon Elastic Kubernetes Service
-- GitHub Actions
-- Docker
-- Kubernetes
-- Terraform
-- Snyk - Scan the security vulnerabilities
-- SonarCloud - SonarQube is used for continuous inspection of code quality
- 
+### Configure the AWS Security credentials
+
+In your terminal, run the **aws configure** command to provide your AWS security credentials. These credentials will allow Terraform to interact with AWS resources. ***Remember to keep these credentials secure.***
 
