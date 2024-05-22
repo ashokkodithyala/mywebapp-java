@@ -1,10 +1,8 @@
 ## Follow the instructions below to provision the AWS EKS infrastructure.
 
-#### Step 1: [Install AWS CLI and Terraform](README-INSTALL.md)  ***(assuming it hasn't been completed yet)***
+#### Step 1: Make sure to set up a [REMOTE BACKEND](/infra_as_code/1.aws_ias_rb-s3-db/README.md) before you proceed.
 
-#### Step 2: Make sure to set up a [REMOTE BACKEND](/infra_as_code/1.aws_ias_rb-s3-db/README.md) before you proceed.
-
-#### Step 3: Update the following variable values in the `.tfvars` file according to the environment. A sample is provided for the DEVELOPMENT environment 
+#### Step 2: Update the following variable values in the `.tfvars` file according to the environment. A sample is provided for the DEVELOPMENT environment 
     
     # Region
     aws_region = "us-west-1"
@@ -34,7 +32,7 @@
     environment = "dev"
     
 
-#### Step 4: Run the following commands from Terraform project folder. Replace the `dev.tfvars` file based on the environment.
+#### Step 3: Run the following commands from Terraform project folder. Replace the `dev.tfvars` file based on the environment.
 
   ````
   1. terraform init 

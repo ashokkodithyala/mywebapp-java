@@ -22,6 +22,7 @@ https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
 In your terminal, run the **aws configure** command to provide your AWS security credentials. These credentials will allow Terraform to interact with AWS resources. ***Remember to keep these credentials secure.***
 
+***********
 
 ### Application Used:
 - Basic java web application created.
