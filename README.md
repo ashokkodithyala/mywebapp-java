@@ -7,8 +7,6 @@
 
 - Follow the instructions  to provision the [AWS EKS infrastructure](infra_as_code/2.aws_eks_ias/README.md) page
 
-### GitHub Actions for Continuous Integration and Delivery
-
  - Automate building and deploying your Docker image to an EKS cluster using a GitHub Actions CI/CD pipeline. This guide walks you through creating workflows that handle building, testing, and deploying the image automatically.
 
 ### Step 1: Configure GitHub Secrets
@@ -35,8 +33,7 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
 
 ### Step 2 - GitHub Actions for Continuous Integration and Delivery
 
-- Automated Pipeline Stages:
-  Here's a reworded version of the text with improved clarity and structure:
+#### Automated Pipeline Stages:
 
 **Pipeline Stages:**
 
@@ -75,7 +72,7 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
 > Currently generated reports can be viewed from their respective sites or the GitHub Actions artifacts section after the pipeline completes. 
 
 
-## Technology Stack
+### Technology Stack
 - AWS
 - Amazon Elastic Kubernetes Service
 - GitHub Actions
