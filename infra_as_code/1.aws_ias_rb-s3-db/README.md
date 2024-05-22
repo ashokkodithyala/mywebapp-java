@@ -29,7 +29,7 @@
 terraform {
   backend "s3" {
     bucket         = <Bucket name from step 3>
-    key            = <Bucket Key>
+    key            = <Key>
     region         = <Region>
     encrypt        = true
     dynamodb_table = <Dynamo table name from step 3>
