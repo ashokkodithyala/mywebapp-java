@@ -49,7 +49,7 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
 3. **Containerize** (**This stage follows successful completion of Stage 2**)
     * Build a Docker image from the JAR file.
     * Run tests on the image to ensure functionality.
-    * Push the image to a container registry for accessibility only if the previous step is successful.
+    * Push the image to a container registry for accessibility only if the image test is successful.
 
 4. **Deployment** (**Conditional based on branch**)
     * **Development:**
