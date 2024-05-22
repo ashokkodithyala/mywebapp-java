@@ -34,7 +34,7 @@ terraform {
     key            = <Key>
     region         = <Region>
     encrypt        = true
-    dynamodb_table = <Dynamo table name from step 3>
+    dynamodb_table = <Dynamo table name>
   }
 }
 ````
