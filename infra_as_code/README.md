@@ -5,11 +5,11 @@
  ### Step 2: Make sure [Provision the AWS EKS infrastructure](infra_as_code/2.aws_eks_ias/README.md) before you proceed.   
 
  ### Step 3: Update the following secrets in the GitHub repository
-      ````
+  
       - Settings 
         - Security 
           - Secrets and variables -> Actions 
-      ````
+  
 
   **Secrets:**
 ````
