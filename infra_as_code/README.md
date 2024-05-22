@@ -12,8 +12,8 @@
   
 
   **Secrets:**
-````
-            - AWS_ACCESS_KEY_ID     - AWS Access key   - can be generated from AWS Accounts page              
+
+            AWS_ACCESS_KEY_ID     - AWS Access key   - can be generated from AWS Accounts page              
             - AWS_SECRET_ACCESS_KEY - AWS Secret Access key - can be generated from AWS Accounts page              
             - AWS_REGION            - AWS Region 
             - DOCKERHUB_TOKEN       - Docker Hub Token - can be generated from Dockerhub account
@@ -23,7 +23,7 @@
             - SONAR_HOST_URL        - Sonar is used for code Analysis - URL: https://sonarcloud.io
             - SONAR_PROJECT_KEY     - Obtain from sonar account once project setup done
             - SONAR_TOKEN           - Obtain from sonar account 
-````
+
 
  
 
