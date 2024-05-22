@@ -27,8 +27,7 @@ Remote backends offer a solution: they store the state data in a remote storage 
   Log into AWS Console and verify S3 Bucket and Dynamo db 
   ````
 
-#### Step 5:
-- Create a file `remotebackend_setup.tf` in terraform project folder and update variables from Step 1
+#### Step 5: Create a file `remotebackend_setup.tf` in terraform project folder and update variables from Step 1
 ````
 terraform {
   backend "s3" {
