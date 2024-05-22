@@ -22,7 +22,7 @@ Remote backends offer a solution: they store the state data in a remote storage 
   2. terraform plan -var-file dev.tfvars
   3. terraform apply -var-file dev.tfvars
   ````
-#### Step 4:
+#### Step 4: Verify
   ````
   Log into AWS Console and verify S3 Bucket and Dynamo db 
   ````
