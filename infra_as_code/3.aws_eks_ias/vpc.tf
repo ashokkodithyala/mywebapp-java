@@ -6,7 +6,7 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  cluster_name = "dev-eks-${random_string.suffix.result}"
+  cluster_name = "${var.environment}-eks-${random_string.suffix.result}"
 }
 
 resource "random_string" "suffix" {
@@ -18,7 +18,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.7.0"
 
-  name                 = "dev-eks-vpc"
+  name                 = "${var.environment}-eks-vpc"
   cidr                 = var.vpc_cidr
   azs                  = data.aws_availability_zones.available.names
   private_subnets      = var.private_subnets

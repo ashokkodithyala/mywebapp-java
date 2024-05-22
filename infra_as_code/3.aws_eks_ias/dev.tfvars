@@ -23,6 +23,6 @@ eks_instance_types = ["t3.medium"]
 # ami type for eks managed node groups
 eks_ami_type = "AL2_x86_64"
 
-# used for tags
+# Specify the enviroment ex: dev, staging, prod
 environment = "dev"
 

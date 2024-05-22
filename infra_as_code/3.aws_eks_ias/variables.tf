@@ -44,5 +44,5 @@ variable "eks_ami_type" {
 
 variable "environment" {
   default = "dev"
-  description = "used for tags"
+  description = "Specify the enviroment ex: dev, staging, prod"
 }
