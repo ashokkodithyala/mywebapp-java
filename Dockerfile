@@ -2,11 +2,11 @@ FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
-COPY *.jar MyWebApp.jar
+COPY target/*.jar MyWebApp.jar
 
 RUN pwd && ls -ls
 
-RUN chmod +x MyWebApp.jar
+#RUN chmod +x MyWebApp.jar
 
 EXPOSE 8080
 
