@@ -2,7 +2,7 @@ FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
-COPY /home/runner/work/mywebapp-java/mywebapp-java/target/*.jar MyWebApp.jar
+COPY *.jar MyWebApp.jar
 
 RUN pwd && ls -ls
 
