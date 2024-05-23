@@ -235,7 +235,7 @@ jobs:
         name: MyWebApp-0.0.1-SNAPSHOT
         #path: target/jar
     - name: Display structure of downloaded files
-      run: ls -ls target/jar/target && ls -ls target/jar && ls -ls target/
+      run: ls -ls && ls -ls target/
 
     #- name: Set up Docker Buildx
     #  uses: docker/setup-buildx-action@v3  
