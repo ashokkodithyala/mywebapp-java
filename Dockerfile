@@ -1,6 +1,6 @@
 FROM openjdk:21-jdk-slim
 
-WORKDIR /home/runner/work/mywebapp-java/mywebapp-java/target/
+WORKDIR /home/runner/work/mywebapp-java/mywebapp-java/target
 
 COPY *.jar app/MyWebApp.jar
 
