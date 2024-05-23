@@ -4,19 +4,16 @@ module "eks" {
   
   cluster_name    = local.cluster_name
   cluster_version = var.kubernetes_version
-  subnet_ids      = module.vpc.private_subnets
-
-  enable_irsa = true
-  
-  tags = {
-    Environment = var.environment
-    Terraform   = "true"
-  }
 
   vpc_id = module.vpc.vpc_id
+  subnet_ids      = module.vpc.private_subnets
+  enable_irsa = true
 
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access = true
+  enable_cluster_creator_admin_permissions = true
+
+  #cluster_security_group_id = aws_security_group.all_worker_mgmt.id
 
   eks_managed_node_group_defaults = {
     ami_type               = var.eks_ami_type
@@ -32,8 +29,11 @@ module "eks" {
     }
   }
 
-  enable_cluster_creator_admin_permissions = true
-  
+ tags = {
+    Environment = var.environment
+    Terraform   = "true"
+  }
+
 }
 
 
@@ -77,7 +77,7 @@ resource "helm_release" "ingress" {
   name       = "ingress"
   chart      = "aws-load-balancer-controller"
   repository = "https://aws.github.io/eks-charts"
-  version    = "1.4.6"
+  version    = "1.7.1"
 
   set {
     name  = "autoDiscoverAwsRegion"
