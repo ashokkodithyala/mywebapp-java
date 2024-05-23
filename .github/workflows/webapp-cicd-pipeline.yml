@@ -154,7 +154,7 @@ jobs:
       with:
         name: MyWebApp-0.0.1-SNAPSHOT
         path: |                           
-         ${{ github.workspace }}/target         
+         ${{ github.workspace }}/target/*.jar         
           retention-days: 10          
  
 
