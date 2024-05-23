@@ -6,9 +6,9 @@ RUN pwd && ls -ls
 
 COPY *.jar app/MyWebApp.jar
 
-RUN chmod +x MyWebApp.jar
+#RUN chmod +x MyWebApp.jar
 
 EXPOSE 8080
 
 # Run the jar file
-CMD ["java", "-jar", "app/MyWebApp.jar"]
+CMD ["java", "-jar", "MyWebApp.jar"]
