@@ -1,3 +1,5 @@
+![Java WebApp](https://github.com/github/docs/actions/workflows/webapp-cicd-pipeline.yml/badge.svg)
+
 ## Deploying a Java Application to AWS EKS using GitHub Actions and IAC with Terraform
 
 ### Follow the instructions below to setup AWS CLI and Terraform.
