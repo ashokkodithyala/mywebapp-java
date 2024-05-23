@@ -1,8 +1,8 @@
 FROM openjdk:21-jdk-slim
 
-WORKDIR /app
+#WORKDIR /app
 
-COPY *.jar MyWebApp.jar
+COPY target/*.jar MyWebApp.jar
 
 RUN pwd && ls -ls
 
