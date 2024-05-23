@@ -211,8 +211,8 @@ jobs:
       contents: read
     needs: [build]
     steps:
-    #- name: checkout Git repository
-    #  uses: actions/checkout@v4
+    - name: checkout Git repository
+      uses: actions/checkout@v4
     
     #- name: Set up JDK 21 for Build
     #  uses: actions/setup-java@v4
