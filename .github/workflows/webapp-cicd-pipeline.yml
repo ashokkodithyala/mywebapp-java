@@ -6,6 +6,8 @@ name: Java WebApp CI/CD pipeline
 on:
   workflow_dispatch:
   push:
+    paths-ignore:
+      - 'README.md'
     branches:
       - 'main'
       - 'feature/*'
@@ -159,6 +161,9 @@ jobs:
   security:
     name: Security Scanning
     runs-on: ubuntu-latest
+    if: 1 != 1           
+    # To enable code scanning for private or internal repositories, 
+    #you must upgrade to GitHub Enterprise with GitHub Advanced Security and enable GitHub Advanced Security for the repository
     permissions:
       # required for all workflows
       security-events: write
