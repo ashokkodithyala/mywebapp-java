@@ -228,18 +228,14 @@ jobs:
     - name: Display files after build
       run: ls -ls 
       #target/
-
-      #can be deleted below action after testing
-    - name: checkout Git repository
-      uses: actions/checkout@v4  
-    
-    #- name: Download artifact for docker build
-     # uses: actions/download-artifact@v4      
-     # with:
-      #  name: MyWebApp-0.0.1-SNAPSHOT
-      #  path: target/jar
-    #- name: Display structure of downloaded files
-    #  run: ls -ls target/jar/target
+  
+    - name: Download artifact for docker build
+      uses: actions/download-artifact@v4      
+      with:
+        name: MyWebApp-0.0.1-SNAPSHOT
+        path: target/jar
+     #- name: Display structure of downloaded files
+       run: ls -ls target/jar/target
 
     #- name: Set up Docker Buildx
     #  uses: docker/setup-buildx-action@v3  
