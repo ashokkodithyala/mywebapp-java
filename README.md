@@ -114,3 +114,22 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
 - Snyk - Scan the security vulnerabilities
 - SonarCloud - SonarQube is used for continuous inspection of code quality
 - OWASP Dependency-Check tool - a Software Composition Analysis (SCA) tool that attempts to detect publicly disclosed vulnerabilities contained within a project’s dependencies. 
+
+### Follow the below instructions to see the application URL.
+- Create or update a kubeconfig file for your cluster. Replace region-code with the AWS Region that your cluster is in and replace my-cluster with the name of your cluster.
+#### Step 1:
+````
+ aws eks update-kubeconfig --region region-code --name my-cluster
+````
+##### Step 2:
+````
+Kubectl get ingress
+
+Ingress is the service name
+
+````
+Use External IP to access the application.
+
+
+
+- 
