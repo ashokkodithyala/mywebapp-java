@@ -54,6 +54,9 @@
 ### Outputs:
 - **Cluster Details**: Provides outputs including the cluster name, endpoint URL, and security group IDs for easy reference.
 
+#### Below is a diagram depicting the architecture on Amazon EKS Cluster:
+
+![Alt text](/infra_as_code/2.aws_eks_ias/AWS_EKS_Arch.png?raw=true "EKS Cluster")
 
 #### Terraform Configuration Breakdown:
 - **providers.tf**: Defines the AWS provider and the region where your infrastructure will be deployed.
