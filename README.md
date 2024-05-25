@@ -115,21 +115,31 @@ To ensure secure deployment, we'll need some secrets stored in your GitHub repos
 - SonarCloud - SonarQube is used for continuous inspection of code quality
 - OWASP Dependency-Check tool - a Software Composition Analysis (SCA) tool that attempts to detect publicly disclosed vulnerabilities contained within a project’s dependencies. 
 
-### Follow the below instructions to see the application URL.
-- Create or update a kubeconfig file for your cluster. Replace region-code with the AWS Region that your cluster is in and replace my-cluster with the name of your cluster.
-#### Step 1:
+#### Follow the below instructions to see the application URL.
+Create or update a kubeconfig file for your cluster. 
+Replace `region-code` with the AWS Region that your cluster is in and replace `my-cluster` with the name of your cluster and execute below commands in terminal.
+  
+- Step 1: 
 ````
  aws eks update-kubeconfig --region region-code --name my-cluster
 ````
-##### Step 2:
+- Step 2:
 ````
 Kubectl get ingress
-
-Ingress is the service name
-
 ````
-Use External IP to access the application.
+Use load balancer's DNS name from the `ADDRESS` field to access the application from above command output.
 
 
 
-- 
+#### GitHub Repository Folder/Files Structure Overview
+* **infra_as_code:**       - This directory contains terraform files to provision EKS cluster and Remote backend for state store. 
+  * **1.aws_ias_rb_s3_db** - This directory contains terraform files to create Remote Backend for state store.
+  * **2.aws_eks_ias**      - This directory contains terraform files to provision EKS cluster.
+* **manifestfiles**        - This directory contains kubernetes manifestfiles for the development deployment.
+* **src**                  - The `src` directory contains the java source code of the project. It is the main directory where the development happens.
+* **Dockerfile**                - Dockerfile to build the docker image.
+* **Implementation Report.PDF** - A brief report explaining the approach, choices made during the implementation, and challenges faced.
+
+
+
+ 
