@@ -9,7 +9,7 @@ on:
     paths-ignore:
       - 'README.md'
     branches:
-      - 'main'
+      - 'main1'
       - 'feature/*'
 
 jobs:
