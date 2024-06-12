@@ -28,6 +28,7 @@ jobs:
       run: |
         NEW_VERSION=$(mvn release:prepare -DpushChanges=false -DautoVersionSubmodules=true | grep "Bumped revision" | awk '{print $5}')
         git push origin main --follow-tags
+        echo "new version: ${{ NEW_VERSION }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
