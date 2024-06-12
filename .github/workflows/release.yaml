@@ -1,6 +1,7 @@
-name: Java Release
+name: Webapp - Release
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
