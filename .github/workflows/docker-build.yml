@@ -32,13 +32,14 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
 
-    - name: xmllint for setup for version extraction
-      uses: ChristophWurst/xmllint-action@v1
-
-    - name: Extract version from pom.xml
-      id: version
-      run: echo "::set-output name=version::$(xmllint --xpath 'string(/project/version)' pom.xml)"
+    #- name: Extract version from pom.xml
+    #  id: version
+    #  uses: ChristophWurst/xmllint-action@v1
+    #  with:
+    #    xml-file: ./appinfo/info.xml
+    #  run: echo "::set-output name=version::$(xmllint --xpath 'string(/project/version)' pom.xml)"
 
     - name: Get short commit SHA
       id: vars
